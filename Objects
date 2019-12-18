@@ -1,0 +1,32 @@
+/* There was an apple picking contest held among elementary shoolers. Return the winner according to how many apples each picked against the time it took them (divide those two).
+The list of all participants consists of objects with their name, time they were picking apples, apples picked and, unfortunately, apples smashed (the kids were in a hurry). They can also smash more apples than they have picked. */
+
+
+getCompetitionWinner([
+{name: 'Susie', time:'1 hour', apples_picked: 30, apples_smashed: 3},
+{name: 'Tariq', time: '1 hour', apples_picked: 28, apples_smashed: 4},
+{name: 'Poppy', time: '0.5 hour', apples_picked: 30, apples_smashed: 34},
+]) === "Susie";
+
+getCompetitionWinner([
+{name: 'Ivan', time: '1 hour', apples_picked: 13, apples_smashed: 10},
+{name: 'Marika', time: '0.5 hour', apples_picked: 17, apples_smashed: 13},
+{name: 'Hans', time: '2 hours', apples_picked: 25, apples_smashed: 4},
+]) === "Hans";
+
+getCompetitionWinner([
+{name: 'Katti', time: '2 hours', apples_picked: 33, apples_smashed: 1},
+{name: 'Omar', time: '1 hour', apples_picked: 29, apples_smashed: 0},
+{name: 'Judy', time: '2 hours', apples_picked: 18, apples_smashed: 20},
+]) === "Omar";
+
+
+/*  SOLLUTION */
+
+function getCompetitionWinner(schoolers) {
+  return schoolers.sort((childA, childB) => getScore(childB) - getScore(childA))[0].name;
+}
+
+function getScore(child) {
+  return (child.apples_picked - child.apples_smashed) / parseFloat(child.time);
+}
