@@ -1,4 +1,4 @@
-/* There was an apple picking contest held among elementary shoolers. Return the winner according to how many apples each picked against the time it took them (divide those two).
+/* There was an apple picking contest held among elementary schoolers. Return the winner according to how many apples each picked against the time it took them (divide those two).
 The list of all participants consists of objects with their name, time they were picking apples, apples picked and, unfortunately, apples smashed (the kids were in a hurry). They can also smash more apples than they have picked. */
 
 
