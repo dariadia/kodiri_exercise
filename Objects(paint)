@@ -1,0 +1,21 @@
+You have three colours of paint and want to colour three rooms. You should have enough paint to colour the whole room in one colour and you can ignore the leftovers. Do you have enough paint?
+One gallon of paint is enough to colour 400 square feet.
+
+setRoomColours({
+rooms: {bathroom: 400, living_room: 1000, bedroom: 900},
+paints: {grey: '3 gallons', blue: '4 gallons', green: '1 gallon'},
+}) === true;
+
+
+SOLUTION
+
+function setRoomColours(props) {
+  let areas = countPaint(props.rooms),
+    paints = Object.values(props.paints).map(value => parseInt(value)).sort((a, b) => b - a),
+    enough = new Set(areas.map((area, i) => area <= paints[i]));
+   return enough.has(true) && enough.size === 1;
+}
+
+function countPaint(rooms) {
+  return Object.values(rooms).map(room => room / 400).sort((a, b) => b - a);
+}
