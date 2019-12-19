@@ -1,0 +1,30 @@
+You run a small store and have been keeping your books by hand. Now you want to digitalize your business.
+Calculate the profit for a selected category. Prices are given per piece.
+
+getProfits([
+	{ count: '20 bottles of lemonade', price: 10, category: 'drinks' },
+	{ count: '29 bars of chocolate', price: 20, category: 'snacks' },
+	{ count: '3 packets of chips', price: 8, category: 'snacks' },
+	], 'snacks') === '£604';
+  
+getProfits([
+	{ count: '3 bottles of milk', price: 5.4, category: 'drinks' },
+	{ count: '19 boxes of biscuits', price: 19.2, category: 'snacks' },
+	{ count: '7 bottles of juice', price: 8, category: 'drinks' },
+], 'drinks') === '£72.2';
+
+getProfits([
+	{ count: '29 bottles of milk', price: 3.2, category: 'drinks' },
+	{ count: '1 cake', price: 21.99, category: 'snacks' },
+	{ count: '43 chewing gums', price: 0.5, category: 'snacks' },
+], 'utensils') === '£0';
+
+
+
+// solution
+
+function getProfits(sold, category) {
+	return '£' + sold.map(e => e.category === category ?
+		e.price * parseFloat(e.count) :
+		0).reduce((total, val) => total + val);
+}
