@@ -1,0 +1,18 @@
+Check your list of potion ingredients with that of your lab partner. If you both have it, disregard the item. If only one has it, then add the item to the new list so that you can get a second one. 
+
+getList('Acromantula venom, Motherwort, African Red Pepper, Boom Berry, Bat wing', 'Mandrake, Honeywater, Motherwort, Frog brain, Boom Berry, Bat wing') === 'Acromantula venom, African Red Pepper, Mandrake, Honeywater, Frog brain';
+
+getList("Flobberworm Mucus, Fluxweed, Hemlock, Blind-worm's Sting, Dragon Claw Ooze", "Dragon Claw Ooze, Pond Slime, Flobberworm Mucus, Fluxweed, Pickled Slugs, Morning dew") === "Hemlock, Blind-worm's Sting, Pond Slime, Pickled Slugs, Morning dew";
+
+getList("Peppermint, Bundimun Secretion, Knotgrass, Gnat Heads", "Peacock feather, Bursting mushroom") === 'Peppermint, Bundimun Secretion, Knotgrass, Gnat Heads, Peacock feather, Bursting mushroom';
+
+
+function getList(listA, listB) {
+	listA = listA.split(', ');
+	listB = listB.split(', ');
+	let newList = new Set(listA);
+	listB.map(item => newList.has(item)
+		? newList.delete(item)
+		: newList.add(item));
+	return [...newList].join(', ');
+}
