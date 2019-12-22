@@ -1,0 +1,10 @@
+Spell the spell for your friend by writing the letters in the air. How many letters do you have to repeat?
+
+spell('Wingardium Leviosa') === 3;
+spell('Petrificus Totalus') === 4;
+spell('Sectumsempra') === 2;
+
+
+function spell(spell) {
+	return spell.length - new Set(spell).size;
+}
