@@ -1,0 +1,13 @@
+The Goblet of Fire's malfunctioned and some students have put in their names more than once. Fix the tournament's pool by removing them and return the candidates list
+
+findDoubles(['Hannah Abbott', 'Jane Smith', 'Bernard Saville', 'Elodie Moreau', 'Timofei Chernov', 'Bernard Saville']) === 'Hannah Abbott, Jane Smith, Bernard Saville, Elodie Moreau, Timofei Chernov';
+
+findDoubles(['Graham Montague', 'Bernard Saville', 'Graham Montague', 'Jules Faucheux', 'Vyacheslav Sokolov', 'Timofei Chernov', 'Timofei Chernov']) === 'Graham Montague, Bernard Saville, Jules Faucheux, Vyacheslav Sokolov, Timofei Chernov';
+
+findDoubles(['Ottilie Durand', 'Elodie Moreau', 'Vyacheslav Sokolov', 'Elodie Moreau', 'Ottilie Durand', 'Elodie Moreau', 'Yulia Meknikova']) === 'Ottilie Durand, Elodie Moreau, Vyacheslav Sokolov, Yulia Meknikova';
+
+
+
+function findDoubles(array) {
+	return [...new Set(array)].join(', ');
+}
