@@ -1,0 +1,25 @@
+Check your electives with that of your friend's and find the classes that you'll be taking together
+
+findSameClasses(
+	['Study of Ancient Runes', 'Care of Magical Creatures', 'Apparition', 'Divination'], 
+	['Study of Ancient Runes', 'Divination', 'Xylomancy']
+) === 'Study of Ancient Runes, Divination';
+
+findSameClasses(
+	['Alchemy', 'Arithmancy', 'Apparition', 'Divination'], 
+	['Alchemy', 'Xylomancy']) === 'Alchemy';
+  
+  findSameClasses(
+	['Arithmancy', 'Care of Magical Creatures', 'Divination'], 
+	['Alchemy', 'Apparition', 'Xylomancy']) === 'None';
+  
+  
+  
+  function findSameClasses(setA, setB) {
+	let same = new Set();
+	setA = new Set(setA);
+	setB.map(subject => setA.has(subject) 
+		? same.add(subject)
+		: same);
+	return [...same].join(', ') || 'None';
+}
