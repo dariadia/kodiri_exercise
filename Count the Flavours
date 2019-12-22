@@ -1,0 +1,16 @@
+You're halfway through a bag of Bertie Bott's Every Flavour Beans. How many flavours do you have left? 
+
+getFlavours(
+	['banana', 'marshmallow', 'sausage', 'marshmallow', 'dirt']) === '4 flavours';
+  
+ getFlavours(
+	['rotten egg', 'soap', 'vomit', 'cherry', 'booger', 'soap']) === '5 flavours';
+  
+ getFlavours(
+	['cinnamon', 'candyfloss', 'cinnamon', 'green apple', 'cinnamon']) === '3 flavours';
+  
+  
+  
+ function getFlavours(beans) {
+	return `${new Set(beans).size} flavours`;
+}
