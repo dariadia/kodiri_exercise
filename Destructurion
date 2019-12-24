@@ -1,0 +1,46 @@
+1)
+Santa's elves are moving presents between shelves. Swap everything on shelf A with everything on shelf B.
+
+swapValues(
+	['toy train', 'teddy bear', 'plush dragon', 'doll'],
+	['paints', 'puzzle', 'board game', 'knitting']
+) === [
+	['paints', 'puzzle', 'board game', 'knitting'], 
+	['toy train', 'teddy bear', 'plush dragon', 'doll']
+];
+swapValues(
+	['pendant', 'dress', 'toy car', 'bird house'],
+	['plush cat', 'puzzle', 'board game', 'toy kitchen']
+) === [
+	['plush cat', 'puzzle', 'board game', 'toy kitchen'],
+	['pendant', 'dress', 'toy car', 'bird house']
+];
+swapValues(
+	['toy cow', 'action figure', 'skates', 'baseball cap'],
+	['pencils', 'jigsaw', 'piggy bank', 'pink cushion']
+) === [
+	['pencils', 'jigsaw', 'piggy bank', 'pink cushion'], 
+	['toy cow', 'action figure', 'skates', 'baseball cap']
+];
+
+function swapValues(shelfA, shelfB) {
+	[shelfA, shelfB] = [shelfB, shelfA];
+	return [shelfA, shelfB];
+}
+
+
+2) Allocate the Tasks
+It's pretty busy at Santa's workshop. Allocate all presents between the elves' wrapping divisions 1, 2 and 3 so that Santa could deliver them all! 
+P.s. The last division has most elves, so they get the rest of the presents left to wrap.
+
+allocateGifts(['paints', 'puzzle', 'toy train', 'teddy bear', 'plush dragon', 'doll']) === ['toy train', 'teddy bear', 'plush dragon', 'doll'];
+allocateGifts(['teddy bear', 'toy car', 'plush cat', 'doll']) === ['plush cat', 'doll'];
+allocateGifts(['doll', 'board game', 'toy train', 'plush puppy']) === ['toy train', 'plush puppy'];
+
+function allocateGifts(presents) {
+	let division1 = '', 
+		division2 = [];
+	[division1, division2, ...rest] = presents;
+	return rest;
+}
+
