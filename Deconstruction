@@ -44,3 +44,91 @@ function allocateGifts(presents) {
 	return rest;
 }
 
+
+3) Change the Values
+Some kids behaved better throughout the year so Santa's putting them on the Nice list. Others were assigned a wrong present so you'll need to correct that as well. Change the values
+
+changePresent(
+	{ present: 'none', isNice: false }
+) === { present: 'toy', isNice: true };
+changePresent(
+	{ present: 'coal', isNice: true }
+) === { present: 'toy', isNice: true };
+
+function changePresent(child) {
+	const change_to = { present: 'toy', isNice: true };
+	child = change_to;
+	return child;
+}
+
+
+4) Find All Siblings
+Make a list of all the children in the given family so that Santa could deliver them presents
+
+getSibling([{
+	name: 'Mike Smith',
+		family: {
+			mother: 'Jane Smith',
+			sibling: 'Samantha Smith'
+	},
+	age: 5
+}]) === 'Mike Smith is sibling to Samantha Smith';
+getSibling([{
+	name: 'Masha Yarova',
+	family: {
+		mother: 'Anastasia Holz',
+		father: 'Yakov Yarov',
+		sibling: 'Petr Yarov'
+	},
+	age: 6
+}]) === 'Masha Yarova is sibling to Petr Yarov';
+getSibling([{
+	name: 'Quinn Dominguez',
+	family: {
+		mother: 'Adriana Dominguez',
+		father: 'Miguel Dominguez',
+		sibling: 'Xavier Dominguez'
+	},
+	age: 3
+}]) === 'Quinn Dominguez is sibling to Xavier Dominguez';
+
+
+function getSibling(family) {
+	let result = [];
+	for (const { name: n, family: { sibling: f } } of family) {
+		result.push(`${n} is sibling to ${f}`);
+	}
+	return result.join('. ');
+}
+
+
+
+5) Who Is This Elf?
+Find out in which of the wrapping department sections does this elf work?
+
+whoIs({
+	name: 'Judy',
+	department: {
+		wrapping: 'wrapping paper',
+		division: 1
+	}
+}) === 'Judy works in section: wrapping paper';
+whoIs({
+	name: 'Mincy',
+	department: {
+		wrapping: 'tying bows',
+		division: 2
+	}
+}) === 'Mincy works in section: tying bows';
+whoIs({
+	name: 'Winky',
+	department: {
+		wrapping: 'stamping address',
+		division: 3
+	}
+}) === 'Winky works in section: stamping address';
+
+
+function whoIs({ name, department: { wrapping: prop } }) {
+	return `${name} works in section: ${prop}`;
+}
