@@ -1,0 +1,129 @@
+Are These Flowers?
+isFlower([
+    'Daffodil', 'Sunflower', 'Cactus'
+]) === false;
+isFlower([
+    'Penguin', 'Onion', 'rose'
+]) === false;
+
+function isFlower(array) {
+    const flowers = ['tulip', 'daffodil', 
+        'poppy', 'sunflower', 'bluebell', 'rose', 'snowdrop'];
+    return array.every(flower => flowers.includes(flower.toLowerCase()));
+}
+
+
+Convert Inputs
+We asked random people at the mall to fill out the questioner. Some wrote a value instead of ticking the box, too bad the questioner was on paper. You now need to sort the answers and store them in the database. 
+Covert the positive answers to 1.
+
+convertInput('YEs') === 1;
+convertInput('nope') === 0;
+
+function convertInput(value) {
+    const ANSWERS = ['yes', 'true', 1];
+    typeof value !== 'string' ?
+        value :
+        value = value.toLowerCase().trim();
+    return ANSWERS.some(e => e === value) ? 1 : 0;
+}
+
+
+
+Who Passed?
+In a triathlon, sportspeople compete in swimming, cycling, and running over various distances. They have already completed the first two and now taking a break. 
+• If a sportsperson won two – they will be at the pedestal.
+• If a sportsperson came second/third twice  – they might be at the pedestal. 
+• However, those who came 4+ at both events cannot win the triathlon in any case.
+Who doesn't stand a chance to be at the pedestal?
+
+isBelowThreshold([
+    { name: 'Penny Wise', scores: [2, 1] },
+    { name: 'Neriah Hull', scores: [4, 9] },
+    { name: 'Ayva Adkins', scores: [3, 4] },
+]) === 'Neriah Hull';
+isBelowThreshold([
+    { name: 'Beatrix Talley', scores: [3, 7] },
+    { name: 'Amandeep Ramos', scores: [1, 1] },
+    { name: 'Evangeline Cooley', scores: [6, 8] },
+]) === 'Evangeline Cooley';
+
+
+function isBelowThreshold(athletes) {
+    return athletes.filter(athlete => 
+        athlete.scores.every(place => place > 3))[0].name;
+}
+
+
+
+No Cheese Please
+You're passing the customs to enter a country that is very strict with its border regulations. 
+• If you're native, you just walk through. 
+• If you're foreign, they check your hand luggage. You aren't allowed to carry any dairy.
+Who passes the border?
+check([
+    {
+        name: 'Andrewsrir Lupne', foreign: true, 
+        carries: ['socks', 'tablet', 'water bottle'] },
+    {
+        name: 'Campbecruncher Hellford', foreign: true, 
+        carries: ['pills', 'cushion', 'cat'] },
+    {
+        name: 'Bloodyrtinez Tinz', foreign: false, 
+        carries: ['milk', 'cheese', 'sausages'] },
+]) === 'Andrewsrir Lupne, Campbecruncher Hellford, Bloodyrtinez Tinz';
+check([
+    {
+        name: 'Snyderizzt Do`an Ohmsfrancis', foreign: true, 
+        carries: ['knife', 'magic gem', 'cheese'] },
+    {
+        name: 'Patrosity C', foreign: true, 
+        carries: ['lamp', 'origami', 'empty bottle'] },
+    {
+        name: 'Reidabiel Porsz', foreign: false, 
+        carries: ['juice', 'book', 'worms'] },
+]) === 'Patrosity C, Reidabiel Porsz';
+check([
+    {
+        name: 'Caoimhe Grumpy', foreign: true, 
+        carries: ['caldron', 'sacrifice', 'milk'] },
+    {
+        name: 'Pador The Adamsnator', foreign: false, 
+        carries: ['clover', 'mask', 'wasps nest'] },
+    {
+        name: 'Mooregmagog Taylorganto', foreign: false, 
+        carries: ['rat', 'ice', 'yogurt'] },
+]) === 'Pador The Adamsnator, Mooregmagog Taylorganto';
+
+
+
+Get a Room
+You and your friends are scouting for a house. It should have a single bedroom over 10x10 square feet and a larger double bedroom over 20x10.
+Can you find a house to rent?
+checkHouse([
+    { single: 200, double: 100 },
+    { single: 60, double: 160 },
+    { single: 120, double: 180 }
+]) === 'Nope';
+checkHouses([
+    { single: 200, double: 250 },
+    { single: 160, double: 260 },
+    { single: 50, double: 170 }
+]) === 'Yeah!';
+checkHouses([
+    { single: 90, double: 180 },
+    { single: 120, double: 190 },
+    { single: 150, double: 210 }
+]) === 'Yeah!';
+
+function checkHouses(houses) {
+    return houses.some(house => house.single <= 100) 
+        ? houses.some(house => house.double >= 200) 
+            ? 'Yeah!' : 'Nope' 
+        : 'Nope';
+}
+
+
+
+
+
