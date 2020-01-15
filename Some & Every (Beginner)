@@ -1,0 +1,67 @@
+Check If Bigger
+
+isBiggerThan1([1, 5, 0, -2]) === true;
+isBiggerThan1([0, -5, -12, -8]) === false;
+isBiggerThan1([7, 5, 10, -2]) === true;
+
+function isBiggerThan1(array) {
+    return array.some(element => element > 1);
+}
+
+
+
+Check if a Word
+isWord(['', 'Hi', 'Table']) === false;
+isWord(['Hello', 'World', 'Kitten']) === true;
+isWord(['pen', 'Jetski', 'O']) === true;
+
+function isWord(array) {
+    return array.every(x => x.length > 0);
+}
+
+
+Can I Drive?
+checkMyStuff(
+    ['passport', 'driving license', 'lipstick'], 
+    'driving license', 
+) === false;
+
+function checkMyStuff(arr, thing1, thing2) {
+    return arr.some(el => el === thing1);
+}
+
+
+
+Is Cat?
+checkIfCat([
+    { name: 'Mr Whiskers', type: 'cat' },
+    { name: 'Brown', type: 'dog' },
+    { name: 'Penny', type: 'cat' },
+]) === false;
+checkIfCat([
+    { name: 'Angus', type: 'cat' },
+    { name: 'Masha', type: 'cat' },
+    { name: 'Kitty', type: 'cat' },
+]) === true;
+checkIfCat([
+    { name: 'Mursik', type: 'cat' },
+    { name: 'Paw', type: 'rat' },
+    { name: 'Captain Morgan', type: 'parot' },
+]) === false;
+
+function checkIfCat(pets) {
+    return pets.every(pet => pet.type === 'cat'); 
+}
+
+
+
+Enough Cash?
+checkCash([
+    {name: 'Amy', cash: 20},
+    { name: 'Diego', cash: 100},
+    { name: 'Igor', cash: 1}
+]) === false;
+
+function checkCash(friends) {
+    return friends.every(friend => friend.cash >= 10);
+}
