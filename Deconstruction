@@ -94,11 +94,8 @@ getSibling([{
 
 
 function getSibling(family) {
-	let result = [];
-	for (const { name: n, family: { sibling: f } } of family) {
-		result.push(`${n} is sibling to ${f}`);
-	}
-	return result.join('. ');
+	let { name: n, family: {sibling: f}} = family[0];
+	return `${n} is sibling to ${f}`;
 }
 
 
