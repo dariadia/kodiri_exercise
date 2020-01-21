@@ -94,8 +94,8 @@ getSibling([{
 
 
 function getSibling(family) {
-	let { name: n, family: {sibling: f}} = family[0];
-	return `${n} is sibling to ${f}`;
+	let [{ name: n, family: { sibling: s }}] = family;
+	return `${n} is sibling to ${s}`;
 }
 
 
