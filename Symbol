@@ -1,0 +1,109 @@
+Your friend has just dared you to make two same values not to equal each other. You flip a coin to find out which of you would try it.
+* If it's tails – you make the statement false:
+⋅⋅⋅You receive a value, then convert it in a way so that it won't equal the very same value. 
+* If it's heads – your friend converts the value, and you just return the initial value
+
+convertValue(true, 'tails') === false;
+convertValue('Hello world!', 'heads') === 'Hello world!';
+
+function convertValue(value, flag) {
+	if (flag === 'heads') return value;
+	let givenValue = Symbol(value),
+		sameValue = Symbol(value);
+	return givenValue === sameValue;
+}
+
+
+
+
+Check If Two Same
+Check if these two variables are the same.
+checkVariables(2, 4) === false;
+checkVariables('John Smith', {name: 'Jonh Smith'}) === false;
+
+function checkVariables(variable1, variable2) {
+	let value1 = Symbol.for(variable1),
+		value2 = Symbol.for(variable2);
+	return value1 === value2;
+}
+
+
+
+Create Unique Keys
+You receive an array of keys. Convert them to unique values, then create an object with these keys and their own reversed keys as values. Return them in pairs.
+Keep in mind that you are creating an object with hidden keys.
+
+createObject(['Hi', 'my', 'name', 'is']) === 'Hi is key for iH // my is key for ym // name is key for eman // is is key for si';
+createObject(['London', 42, true]) === 'London is key for nodnoL // 42 is key for 24 // true is key for eurt';
+
+function createObject(keys) {
+	let objKeys = keys.map(value => Symbol.for(value));
+	return assembleAnswer(objKeys).join(' // ');
+}
+
+function assembleAnswer(objKeys) {
+	let helper = {},
+		answer = [];
+	for (let key of objKeys) {
+		helper[key] = setValue(Symbol.keyFor(key));
+		answer.push(`${Symbol.keyFor(key)} is key for ${helper[key]}`);
+	}
+	return answer;
+}
+
+function setValue(key) {
+	return typeof key === 'string' ?
+		reverseValue(key) :
+		reverseValue(key.toString());
+}
+
+function reverseValue(value) {
+	return value.split('').reverse().join('');
+}
+
+
+
+
+Clone the Object
+We are inventing a cloning machine. Create a user (as an Object) with the given values and the id key as a Symbol. Then clone the user.
+* Keep in mind, keys defined as a Symbol are private.
+
+cloneUser('Jane Dow', 3) === 'clone_of_3 is clone of Jane Dow';
+cloneUser('Kruz Nachos', 235) === 'clone_of_235 is clone of Kruz Nachos';
+
+function cloneUser(name, person_id) {
+	let id = Symbol(person_id),
+		user = {
+			[id]: `clone_of_${person_id}`
+		};
+	let clone = Object.assign({}, user);
+	return `${clone[id]} is clone of ${name}`;
+}
+
+
+
+
+Check If Siblings
+Twins are not allowed to partake in this competition. However, some players still decided to cheat. The organiser gets suspicious and wants to check if those two are twins or not.
+Twins have:
+ * same birthday,
+ * same parent.
+ 
+ checkIfTwins(
+	{ name: 'Oli Musson', dob: '1980-04-04', parent: 'Musson'}, 
+	{ name: 'Ilon Krusson', dob: '1980-04-04', parent: 'Musson' }
+) === true;
+checkIfTwins(
+	{ name: 'Ilya Karpov', dob: new Date('1978-10-11'), parent: 'Karpov'}, 
+	{ name: 'Lev Karpov', dob: new Date('1938-01-11'), parent: 'Karpov' }
+) === false;
+
+function checkIfTwins(player1, player2) {
+	let player1_dob = Symbol.for(player1.dob); 
+	let player2_dob = Symbol.for(player2.dob);
+	return player1_dob === player2_dob && 
+		player1.parent === player2.parent ; 
+}
+
+
+
