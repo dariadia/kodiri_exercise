@@ -95,6 +95,14 @@ check([
         carries: ['rat', 'ice', 'yogurt'] },
 ]) === 'Pador The Adamsnator, Mooregmagog Taylorganto';
 
+function check(passengers) {
+	const forbiddenItems = ['milk', 'cheese', 'yogurt'];
+	return passengers
+		.filter(passenger => passenger.isForeign ?
+			passenger.carries.every(item =>
+				!forbiddenItems.includes(item)) : passenger)
+		.map(passenger => passenger.name).join(', ');
+}
 
 
 Get a Room
