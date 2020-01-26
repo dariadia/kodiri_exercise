@@ -1,0 +1,103 @@
+Update the Picks of the Week
+Every week the radio station posts the most popular tracks. Update the selection and add new trending titles. 
+• If they clicked the track, which is already on the list, less than 500 times this week, remove this track from the selection.
+updateSelection(
+	{ title: 'Travi8$', artist: 'Elpidio Travieso', hits: 409},
+	{ title: 'Roxana', artist: 'Maricela_OB', hits: 391 },
+) === [{ title: 'Ania', artist: 'Yura Rivera', hits: 1503 }];
+updateSelection(
+	{ title: 'Lyublu Tebya', artist: 'Mariya Borisova', hits: 1999},
+	{ title: '4Ur', artist: 'Aiza', hits: 704 },
+	{ title: 'Golden Rat', artist: 'Irakliy Vilma', hits: 147 },
+) === [
+	{ title: 'Lyublu Tebya', artist: 'Mariya Borisova', hits: 1999 },
+	{ title: '4Ur', artist: 'Aiza', hits: 704},
+	{ title: 'Ania', artist: 'Yura Rivera', hits: 1503 }
+];
+
+function updateSelection(...tracks) {
+	const newTracks = [{ title: 'Ania', 
+		artist: 'Yura Rivera', hits: 1503 }];
+	tracks = tracks.filter(track => track.hits >= 500);
+	return [...tracks, ...newTracks];
+}
+
+
+Adapt the Results
+We have conducted a written survey. Unfortunately, not all participants have answered according to the requirements so now we have to adapt the results to comply with our online database.
+* Hint: `.map()` creates a new instance of an array while `.forEach` doesn't.
+adaptResults(
+	{ name: 'Moonsong Nyx', answers: [1, 0, 1] },
+	{ name: 'Cloverdust Horsebaler', answers: ['yes', 'no', 'no'] }
+) === [
+	{ name: 'Moonsong Nyx', answers: 
+		{ hasChildren: true, hasDrivingLicense: false, higherEducation: true } }, 
+	{ name: 'Cloverdust Horsebaler', answers: 
+		{ hasChildren: true, hasDrivingLicense: false, higherEducation: false } 
+}];
+
+function adaptResults(...participants) {
+	participants
+		.forEach(participant => participant.answers = adaptAnswers(participant.answers));
+	return participants;
+}
+
+function adaptAnswers(answers) {
+	const questions = 
+		['hasChildren', 'hasDrivingLicense', 'higherEducation'];
+	let userAnswers = {};
+	for (let index in questions) {
+		userAnswers[questions[index]] = convertToBoolean(answers[index]);
+	}
+	return userAnswers;
+}
+
+function convertToBoolean(answer) {
+	const answers = ['true', 1, 'yes'];
+	return answers.includes(answer) ? true : false;
+}
+
+
+
+Convert User Birthdays
+These users have written their birthdays as strings. Please convert the birthdays into Unix timestamps so that we could store them in our database.
+updateUsers({
+	name: 'Katee Ahuush', dob: 'January 15th, 1996'
+}) === [
+	{ name: 'Katee Ahuush', dob: 821664000000}
+];
+updateUsers(
+	{ name: 'Tammy-Lu', dob: 'June 5th, 1983'},
+	{ name: 'Duquia Gabriel', dob: 'May 3rd, 1999' },
+	{ name: 'Bling-D', dob: 'April 19th, 1958' },
+) === [
+	{ name: 'Tammy-Lu', dob: 423619200000 }, 
+	{ name: 'Duquia Gabriel', dob: 925689600000 }, 
+	{ name: 'Bling-D', dob: -369360000000 }
+];
+
+function updateUsers(...users) {
+	return users.map(user => updateUser(user));
+}
+function updateUser(user) {
+	user.dob = Date.parse(new Date(...getDob(user.dob)));
+	return user;
+}
+function getDob(dob) {
+	const months = ['January', 'February', 'March', 'April',
+		'May', 'June', 'July', 'August', 'September',
+		'October', 'November', 'December'];
+	let helperArr = dob.split(' ');
+	let month = months.indexOf(helperArr[0]), 
+		date = parseInt(helperArr[1]),
+		year = helperArr[2];
+	return [year, month, date];
+}
+
+
+
+
+
+
+
+
