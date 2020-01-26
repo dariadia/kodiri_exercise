@@ -100,4 +100,41 @@ function getDob(dob) {
 
 
 
+Due to a new import tax, some of our materials now cost £5 more. Update the prices of those products, production of which involves the given materials (+£5 per each material).
+Tell the results to your colleague.
+updatePrices([	
+	{ type: 'chair', made: ['timber'], price: '£20' }, 
+	{ type: 'table', made: ['timber', 'glass'], price: '£30' }, 
+], 
+'metal ore', 'timber', 
+) === 'A chair now costs £25. A table now costs £35.';
 
+function updatePrices(products, ...materials) {
+	return products.filter(product => materials.includes(product.made))
+		.map(product =>
+			`A ${product.type} now costs £${
+				parseInt(product.price.slice(1, 3)) + 5}.`)
+		.join(' ') || 'Same prices!';
+}
+
+
+
+
+
+
+Create a user instance from the given properties.
+createUsers(
+	['Tilly', 26, 'Female', 'She/her'],
+	['Lavender', 38, 'Non-binary', 'They/their'],
+) === [
+	{ name: 'Tilly', age: 26, gender: 'Female', pronouns: 'She/her' }, 
+	{ name: 'Lavender', age: 38, gender: 'Non-binary', pronouns: 'They/their' }
+];
+function createUsers(...users) {
+	return users.map(user => createUser(user));
+}
+
+function createUser(props) {
+	let [ name, age, gender, pronouns ] = props;
+	return { name: name, age: age, gender: gender, pronouns: pronouns};
+}
