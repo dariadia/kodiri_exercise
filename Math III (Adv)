@@ -35,4 +35,19 @@ function getFibonacci(num, memo) {
 
 
 
+Get the Maximum Output
+You are designing a new computer processor prototype and have several options which parts to install. You are only permitted one improvement at a time, find the combination with the greatest output.
+For example, you install part 2 (that costs your system 1 Joule), then you yield the new invention's output on day 5 (for 6 Joules). The maximum output is 6-1 = 5.
+getMaxOutput([7, 1, 5, 3, 6, 4]) === 5;
 
+function getMaxOutput(capacity) {
+	let minPower = Number.MAX_VALUE,
+		maxOutput = 0;
+	for (let i = 0; i < capacity.length; i++) {
+		capacity[i] < minPower ?
+			minPower = capacity[i] :
+			capacity[i] - minPower > maxOutput ?
+				maxOutput = capacity[i] - minPower : null;
+	}
+	return maxOutput;
+}
