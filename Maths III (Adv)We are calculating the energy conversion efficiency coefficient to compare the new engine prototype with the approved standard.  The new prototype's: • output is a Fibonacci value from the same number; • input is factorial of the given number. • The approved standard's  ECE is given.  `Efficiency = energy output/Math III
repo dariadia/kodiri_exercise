@@ -1,0 +1,37 @@
+Return Factorial Differences
+We are calculating the energy conversion efficiency coefficient to compare the new engine prototype with the approved standard. 
+The new prototype's:
+• output is a Fibonacci value from the same number;
+• input is factorial of the given number.
+• The approved standard's  ECE is given.
+`Efficiency = energy output / energy input * 100%. Units are Joules (J)`
+getDifference(15, 0.67) === 'The standard is more efficient';
+
+function getDifference(number, standardECE) {
+	let protoECE = getFibonacci(number) / getFactorial(number);
+	return protoECE / standardECE > 1 ? 
+		'The prototype is more efficient' :
+		'The standard is more efficient';
+}
+
+function getFactorial(n, memo) {
+	memo = memo || {};
+	if (memo[n]) return memo[n];
+	if (n === 0) return 1;
+	for (let i = 0; i < n; i++) memo[n] = n * getFactorial(n - 1, memo);
+	return memo[n];
+}
+
+function getFibonacci(num, memo) {
+	memo = memo || {};
+	if (memo[num]) return memo[num];
+	if (num <= 1) return 1;
+	return memo[num] = getFibonacci(num - 1, memo) 
+		+ getFibonacci(num - 2, memo);
+}
+
+
+
+
+
+
