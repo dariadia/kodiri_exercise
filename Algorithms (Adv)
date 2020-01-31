@@ -51,3 +51,34 @@ function getMaxOutput(capacity) {
 	}
 	return maxOutput;
 }
+
+
+
+
+
+
+Find the Same Spare Parts
+You are trying to fix a memory leak. For that, you have two sets of resources available. The catch is, you cannot use the ones that have a pair (those are prepared for another project). 
+• Find the single capacities in each set.
+• If they are the same, return one.
+• If they are different, you can switch on both at the same time, so return their sum.
+getParts([6, 1, 6, 3, 1], [7, 7, 2, 0, 2]) === 3;
+
+function getParts(set1, set2) {
+let capacity1 = getSingle(set1),
+		capacity2 = getSingle(set2);
+	return capacity1 !== capacity2 ?
+		capacity1 + capacity2 :
+		capacity1;
+}
+function getSingle(numbers) {
+	let single;
+	for (let i = 0; i < numbers.length; i++) {
+		single ^= numbers[i];
+	}
+	return single;
+}
+
+
+
+
