@@ -82,3 +82,65 @@ function getSingle(numbers) {
 
 
 
+Get Maximum Points
+In a race, you can move from station to station and win points. Note:
+• All stations make up a triangular on the map;
+• You move from top to bottom;
+• Each step you move to the adjacent station on the line below.
+Plan the route in such a way, that you receive the maximum points.
+
+getMaxPoints([
+	[6],
+	[1, 8],
+	[2, 9, 7],
+	[4, 1, 5, 9]
+]) === 30;
+
+function getMaxTotal(array) {
+	for (let line = array.length - 2; line >= 0; line--) {
+		for (let item = 0; item < array.length; item++) {
+			let self = array[line][item];
+			let result = Math.max(
+				array[line + 1][item] + self,
+				array[line + 1][item + 1] + self
+			);
+			array[line][item] = result;
+		}
+	}
+	return array[0][0];
+}
+
+
+
+
+
+Check Capacities
+There are N programs running, and each has a performance value. Based on the performance values, you are allocating new resources for these programs to use.
+The requirements are:
+• Each program receives at least one point;
+• Programs with a higher performance get more points;
+Find the minimum value of capacity points you need to allocate. Then compare the number to the ones available. Is there enough? 
+
+function getCapacities(performance) {
+	const capacities = new Array(performance.length).fill(1);
+	for (let i = 1; i < capacities.length; i++) {
+		if (performance[i] > performance[i - 1]) {
+			capacities[i] = capacities[i - 1] + 1;
+		}
+	}
+	let sum = capacities[capacities.length - 1];
+	for (let i = capacities.length - 2; i >= 0; i--) {
+		if (performance[i] > performance[i + 1]) {
+			capacities[i] = 
+				Math.max(capacities[i], capacities[i + 1] + 1);
+		}
+		sum += capacities[i];
+	}
+	return sum;
+}
+
+function checkCapacities(performance, available) {
+	return getCapacities(performance) <= available ?
+		'Enough' :
+		'Need more';
+}
