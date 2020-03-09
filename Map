@@ -1,0 +1,66 @@
+Pack Light
+Alice is setting out on a journey around the world (which is a big deal, believe me). Let's make an app to help her along the way!
+First, Alice needs to keep track of her stuff. Return a `Map` object listing all items according to the bags, inside which Alice puts them.
+
+makeList(
+	[{ name: 'suitcase', size: 2, items: [] },
+		{ name: 'backpack', size: 3, items: [] }], 
+	't-shirt', 'socks', 'blanket') === 'Inside suitcase: t-shirt, socks. Inside backpack: blanket.';
+
+
+function makeList(bags, ...items) {
+	let luggage = new Map(),
+		piece = 0;
+	for (let bag of bags) {
+		for (let space = 0; space < bag.size; space++) {
+			items[piece] ?
+				bag.items.push(items[piece]) && piece++ :
+				items;
+		}
+		luggage.set(bag.name, bag.items);
+	}
+	return readList(luggage);
+}
+
+function readList(list) {
+	let result = [];
+	list.forEach((values, key) => {
+		result.push(`Inside ${key}: ${values.join(', ')}.`); 
+	});
+	return result.join(' ');
+}
+
+
+
+
+
+Buy Tickets
+Alice has to be cautious with her savings if she wants to go far. Help her find the cheapest tickets for the route she's planned.
+
+buyTickets({
+	Beijing: [403, 830, 490],
+	Tokyo: [105, 300, 249],
+	SanFrancisco: [892, 590, 490]
+}) === 'The cheapest flight to Beijing costs 403. The cheapest flight to Tokyo costs 105. The cheapest flight to SanFrancisco costs 490';
+
+function buyTickets(flights) {
+	let boughtTickets = new Map();
+	for (let destination in flights) {
+		boughtTickets.set(
+			destination,
+			flights[destination].sort((a, b) => a - b)[0]);
+	}
+	return readBought(boughtTickets);
+}
+
+function readBought(boughtTickets) {
+	let result = [];
+	boughtTickets.forEach((value, key) => {
+		result.push(`The cheapest flight to ${key} costs ${value}`);
+	});
+	return result.join('. ');
+}
+
+
+
+
