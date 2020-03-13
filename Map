@@ -62,5 +62,43 @@ function readBought(boughtTickets) {
 }
 
 
+Know the Sights
+Each city has several places Alice wants to see. Put them down grouping by location so that she won't miss anything.
+
+makePlan(
+	{ name: 'Greenland National Museum and Archives', location: 'Nuuk' },
+	{ name: 'Quassussuaq', location: 'the Quassussuaq mountain ridge' },
+	{ name: 'Hans Egedes Hus', location: 'Nuuk' }
+) === 'In Nuuk see Greenland National Museum and Archives, Hans Egedes Hus. In the Quassussuaq mountain ridge see Quassussuaq.';
+
+function makePlan(...sights) {
+	let plan = makeMap(sights);
+	for (let sight of sights) {
+		plan.forEach((value, key) => {
+			key === sight.location ? 
+				plan.get(key).push(sight.name) : plan;
+		});
+	}
+	return readPlan(plan);
+}
+
+function makeMap(sights) {
+	let plan = new Map(),
+		locations = new Set(sights.map(sight => sight.location));
+	for (let location of locations) {
+		plan.set(location, []);
+	}
+	return plan;
+}
+
+function readPlan(plan) {
+	let result = [];
+	plan.forEach((value, key) => {
+		result.push(`In ${key} see ${value.join(', ')}.`);
+	});
+	return result.join(' ');
+}
+
+
 
 
